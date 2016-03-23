@@ -1,4 +1,5 @@
 <?php
+include 'estilo/global.php';
 
 $logins = array('luiz' => '123456',
 				'joao' => '654321',
@@ -12,7 +13,15 @@ if (isset($_POST['btn_send'])) {
 			
 			include('templates/admin_tpl.php');
 			
+		} else {
+			
+			echo '<h3>Algo não deu certo. Tente Novamente! <br> <br> 
+			Você está sendo redirecionado para a tela de login. </h3> ';
+			
+			header("refresh:5;url=index.php"); 
+			
 		}
+	
 	
 	} else {
 				
@@ -28,3 +37,4 @@ if (isset($_POST['btn_send'])) {
 	
 }
 ?>
+</html>
