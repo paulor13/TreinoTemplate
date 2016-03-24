@@ -1,11 +1,24 @@
 <?php
-include 'estilo/global.php';
 
-$logins = array('luiz' => '123456',
-				'joao' => '654321',
-				'joana' => '123123');
+include ('estilo/estilo.php');
+include ('config/db.php');
 
 if (isset($_POST['btn_send'])) {
+
+	$db_conn = mysqli_connect ("HOST_DB","USUARIO_DB","SENHA_DB","NOME_DB");
+	
+	$stmt = mysqli_prepare ($db_conn,'	SELECT
+											cod_usuario
+										FROM
+											pi_usuario
+										WHERE
+											login = ?
+										AND
+											senha = ?');
+											
+	mysql_stmt_bind_param ($stmt,'ss',	$_POST['login'],
+										$_POST['senha']
+							);
 	
 	if (isset($logins[$_POST['login']])) {
 		
